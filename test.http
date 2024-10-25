@@ -1,0 +1,59 @@
+POST http://localhost:3001/auth/register-alumni HTTP/1.1
+Content-Type: application/json 
+
+{
+    "userName":"Kanishka S",
+    "email":"kanishka2727@gmail.com",
+    "password":"kan15hka"
+}
+###
+POST http://localhost:3001/auth/verify-email HTTP/1.1
+Content-Type: application/json 
+
+{
+    "emailAddress":"dhivagarmathiyalagan@gmail.com",
+    "password":"Dhin@"
+}
+###
+POST http://localhost:3001/auth/verify-token HTTP/1.1
+Content-Type: application/json 
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbEFkZHJlc3MiOiJkaGl2YWdhcm1hdGhpeWFsYWdhbkBnbWFpbC5jb20iLCJpYXQiOjE3MjEzOTU1MzUsImV4cCI6MTcyMTM5OTEzNX0.fsp9gvv8lIAg7rqIuPdWuZm8sjj7ywTSJgkwwVciNqA"
+
+}
+###
+POST http://localhost:3001/auth/login HTTP/1.1
+Content-Type: application/json 
+
+{
+    "emailAddress":"dhivagarmathiyalagan@gmail.com",
+    "password":"Dhin@"
+}
+###
+POST http://localhost:3001/update/update-profile HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.MTcyMTM5ODE3MDMwMjc.I5JDjVMYop9olFahoVPAE4D2n-7MfOmgSbOfRee_V_U
+Content-Type: application/json 
+
+{
+  "fullName": "John Doe",
+  "gender": "Male",
+  "contactNumber": "+1234567890",
+  "postalAddress": "123 Main St, Anytown, USA",
+  "yearOfGraduation": 2020,
+  "departmentAndSpecialization": "Computer Science - Artificial Intelligence",
+  "branch": "Engineering",
+  "currentJobTitle": "Software Engineer",
+  "companyName": "Tech Innovations Inc.",
+  "industrySector": "Information Technology",
+  "linkedInProfileUrl": "https://www.linkedin.com/in/johndoe",
+  "topicsOfInterest":"Machine Learning,Data Science,Blockchain Technology",
+  
+  "preferredModeOfSession": "Online",
+  "participateInFutureSessions": true
+}
+
+###
+GET http://localhost:3001/view/view-profile HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiJ9.MTcyMTM5ODE3MDMwMjc.I5JDjVMYop9olFahoVPAE4D2n-7MfOmgSbOfRee_V_U
+Content-Type: application/json 
