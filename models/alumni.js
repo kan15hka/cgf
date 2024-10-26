@@ -36,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: false,
     },
   }, {
-    freezeTableName: true, // Prevents Sequelize from pluralizing the table name
+    freezeTableName: true,
   });
 
   return Alumni;
