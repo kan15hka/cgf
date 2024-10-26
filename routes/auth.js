@@ -2,14 +2,31 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const { Alumni } = require("../models/alumni");
-const { Verification } = require("../models/verification");
-const sendVerificationEmail = require("../utils/emailService");
+const { Alumni } = require("../models/db");
+const { Verification } = require("../models/db");
+// const sendVerificationEmail = require("../utils/emailService");
 
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  const { email, password, fullName } = req.body;
+  const {
+    email,
+    password,
+    fullName,
+    gender,
+    contactNumber,
+    postalAddress,
+    yearOfGraduation,
+    departmentAndSpecialization,
+    branch,
+    currentJobTitle,
+    companyName,
+    industrySector,
+    linkedInProfileUrl,
+    topicsOfInterest,
+    preferredModeOfSession,
+    participateInFutureSessions,
+  } = req.body;
 
   try {
     const existingUser = await Alumni.findOne({ where: { email } });
@@ -24,16 +41,30 @@ router.post("/register", async (req, res) => {
       email,
       password: hashedPassword,
       fullName,
+      gender,
+      contactNumber,
+      postalAddress,
+      yearOfGraduation,
+      departmentAndSpecialization,
+      branch,
+      currentJobTitle,
+      companyName,
+      industrySector,
+      linkedInProfileUrl,
+      topicsOfInterest,
+      preferredModeOfSession,
+      participateInFutureSessions,
     });
 
     const verificationToken = crypto.randomBytes(20).toString("hex");
+    console.log(verificationToken)
     await Verification.create({
       userId: newUser.id,
       token: verificationToken,
       expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
     });
 
-    await sendVerificationEmail(email, verificationToken);
+    // await sendVerificationEmail(email, verificationToken);
 
     res.status(201).json({
       message: "User registered. Please check your email for verification.",

@@ -1,44 +1,58 @@
-POST http://localhost:3001/auth/register-alumni HTTP/1.1
+//register new alumni
+POST http://localhost:5000/auth/register HTTP/1.1
 Content-Type: application/json 
 
 {
-    "userName":"Kanishka S",
-    "email":"kanishka2727@gmail.com",
-    "password":"kan15hka"
-}
-###
-POST http://localhost:3001/auth/verify-email HTTP/1.1
-Content-Type: application/json 
-
-{
-    "emailAddress":"dhivagarmathiyalagan@gmail.com",
-    "password":"Dhin@"
-}
-###
-POST http://localhost:3001/auth/verify-token HTTP/1.1
-Content-Type: application/json 
-
-{
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbEFkZHJlc3MiOiJkaGl2YWdhcm1hdGhpeWFsYWdhbkBnbWFpbC5jb20iLCJpYXQiOjE3MjEzOTU1MzUsImV4cCI6MTcyMTM5OTEzNX0.fsp9gvv8lIAg7rqIuPdWuZm8sjj7ywTSJgkwwVciNqA"
-
-}
-###
-POST http://localhost:3001/auth/login HTTP/1.1
-Content-Type: application/json 
-
-{
-    "emailAddress":"dhivagarmathiyalagan@gmail.com",
-    "password":"Dhin@"
-}
-###
-POST http://localhost:3001/update/update-profile HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.MTcyMTM5ODE3MDMwMjc.I5JDjVMYop9olFahoVPAE4D2n-7MfOmgSbOfRee_V_U
-Content-Type: application/json 
-
-{
-  "fullName": "John Doe",
+  "email": "sample2003@gmail.com",
+  "password": "securePassword123",
+  "fullName": "Test User",
   "gender": "Male",
-  "contactNumber": "+1234567890",
+  "contactNumber": "1234567890",
+  "postalAddress": "123 Main St, Anytown",
+  "yearOfGraduation": 2022,
+  "departmentAndSpecialization": "Computer Science",
+  "branch": "Engineering",
+  "currentJobTitle": "Software Developer",
+  "companyName": "Tech Corp",
+  "industrySector": "Technology",
+  "linkedInProfileUrl": "https://linkedin.com/in/testuser",
+  "topicsOfInterest": "Machine Learning, Web Development",
+  "preferredModeOfSession": "Online",
+  "participateInFutureSessions": true
+}
+###
+// EMAIL SENDING IS PENDING
+# POST http://localhost:5000/auth/verify-email HTTP/1.1
+# Content-Type: application/json 
+
+# {
+#     "email":"testuser@example.com",
+#     "password":"securePassword123"
+# }
+###
+//verify alumni
+GET http://localhost:5000/auth/verify/e5b483c6282b149224100be9e9c1e19ebb8ef46b
+
+//login alumni
+###
+POST http://localhost:5000/auth/login HTTP/1.1
+Content-Type: application/json 
+
+{
+    "email":"sample2003@gmail.com",
+    "password":"securePassword123"
+}
+
+//update individual alumni profile
+###
+POST http://localhost:5000/alumni/update-profile HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyOTkzNTgwNiwiZXhwIjoxNzI5OTM5NDA2fQ.e8dzUWyg5mRRoT1TdviDOnxHo4Mb5RmW7Y9cbrD91DU
+Content-Type: application/json
+
+{
+  "fullName": "Valavan",
+  "gender": "Male",
+  "contactNumber": "1234567890",
   "postalAddress": "123 Main St, Anytown, USA",
   "yearOfGraduation": 2020,
   "departmentAndSpecialization": "Computer Science - Artificial Intelligence",
@@ -48,12 +62,24 @@ Content-Type: application/json
   "industrySector": "Information Technology",
   "linkedInProfileUrl": "https://www.linkedin.com/in/johndoe",
   "topicsOfInterest":"Machine Learning,Data Science,Blockchain Technology",
-  
   "preferredModeOfSession": "Online",
   "participateInFutureSessions": true
 }
 
+//get individual alumni profile
 ###
-GET http://localhost:3001/view/view-profile HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.MTcyMTM5ODE3MDMwMjc.I5JDjVMYop9olFahoVPAE4D2n-7MfOmgSbOfRee_V_U
+GET http://localhost:5000/alumni/get-profile HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyOTkzNTgwNiwiZXhwIjoxNzI5OTM5NDA2fQ.e8dzUWyg5mRRoT1TdviDOnxHo4Mb5RmW7Y9cbrD91DU
 Content-Type: application/json 
+
+//get all alumni details
+###
+GET http://localhost:5000/alumni HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyOTkzNTgwNiwiZXhwIjoxNzI5OTM5NDA2fQ.e8dzUWyg5mRRoT1TdviDOnxHo4Mb5RmW7Y9cbrD91DU
+Content-Type: application/json
+
+//delete alumni with their id
+###
+DELETE http://localhost:5000/alumni/17
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTcyOTkzNTgwNiwiZXhwIjoxNzI5OTM5NDA2fQ.e8dzUWyg5mRRoT1TdviDOnxHo4Mb5RmW7Y9cbrD91DU
+Content-Type: application/json

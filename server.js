@@ -8,9 +8,9 @@ const alumniRoutes = require("./routes/alumni");
 const app = express();
 
 app.use(bodyParser.json());
-
 app.use("/auth", authRoutes);
 app.use("/alumni", alumniRoutes);
-
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+console.log("DB CONNECTED")
